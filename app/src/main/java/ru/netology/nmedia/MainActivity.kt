@@ -1,7 +1,6 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityMainBinding
@@ -11,8 +10,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val like = findViewById<ImageView>(R.id.likes)
-        val share = findViewById<ImageView>(R.id.shares)
+
 
         val post = Post(
             id = 1,
@@ -30,19 +28,16 @@ class MainActivity : AppCompatActivity() {
             viewCount?.text = post.view.toString()
 
             if (post.likedByMe) {
-                like?.setImageResource(R.drawable.ic_liked)
+                likes?.setImageResource(R.drawable.ic_liked)
             }
 
-            avatar.setOnClickListener {
-                Log.d("", "avatar")
-            }
-            like.setOnClickListener {
+            likes.setOnClickListener {
                 post.likedByMe = !post.likedByMe
-                like.setImageResource(if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like)
+                likes.setImageResource(if (post.likedByMe) R.drawable.ic_liked else R.drawable.ic_like)
                 if (post.likedByMe) post.like++ else post.like--
                 likesCount?.text = post.like.toString()
             }
-            share.setOnClickListener {
+            shares.setOnClickListener {
                 post.share++
                 sharesCount?.text = post.share.toString()
             }
