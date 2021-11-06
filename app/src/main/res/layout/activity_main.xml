@@ -88,10 +88,10 @@
         android:background="@android:color/transparent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content"
-        app:srcCompat="@drawable/ic_baseline_favorite_border_24" />
+        app:srcCompat="@drawable/ic_like" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/likesCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset"
@@ -100,23 +100,23 @@
         tools:text="10" />
 
     <ImageButton
-        android:id="@+id/share"
+        android:id="@+id/shares"
         android:layout_marginStart="@dimen/offset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset"
+        app:layout_constraintStart_toEndOf="@+id/likesCount"
         android:background="@android:color/transparent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/content"
         app:srcCompat="@drawable/ic_baseline_share_24" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/sharesCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12"
         android:layout_marginTop="@dimen/offset"
-        app:layout_constraintStart_toEndOf="@+id/share"
+        app:layout_constraintStart_toEndOf="@+id/shares"
         app:layout_constraintTop_toBottomOf="@+id/content" />
 
     <ImageButton
@@ -125,12 +125,12 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:layout_marginTop="@dimen/offset"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintEnd_toStartOf="@+id/viewCount"
         app:layout_constraintTop_toBottomOf="@+id/content"
         app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/viewCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset"
