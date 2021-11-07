@@ -10,11 +10,11 @@ data class Post (
     val author: String,
     val content: String,
     val published: String,
-    var like: Int = 0,
+    val like: Int = 0,
     var share: Int = 0,
     var view: Int = 0,
-    var likedByMe: Boolean = false,
-    var shared: Boolean = false
+    val likedByMe: Boolean = false,
+    val shared: Boolean = false
 )
 
 abstract class Elements() {
