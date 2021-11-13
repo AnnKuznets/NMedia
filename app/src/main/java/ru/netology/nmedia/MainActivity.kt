@@ -1,10 +1,10 @@
 package ru.netology.nmedia
 
 import android.os.Bundle
-import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import ru.netology.nmedia.databinding.ActivityMainBinding
+import ru.netology.nmedia.databinding.CardPostBinding
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,37 +13,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val viewModel: PostViewModel by viewModels()
-
-        with(binding) {
-            viewModel.get().observe(this@MainActivity) {post ->
-                author.text = post.author
-                content.text = post.content
-                published.text = post.published
-                likesCount?.text = post.like.toString()
-                sharesCount?.text = post.share.toString()
-                viewCount?.text = post.view.toString()
-
-                likes?.setImageResource(if (post.likedByMe) {
-                        R.drawable.ic_liked
-                } else {
-                R.drawable.ic_like
-            })
-                likesCount?.text = post.like.toString()
-
-                sharesCount?.text = post.share.toString()
-
-                viewCount?.text = post.view.toString()
-            }
-
-            likes.setOnClickListener {
-                viewModel.like()
-            }
-            shares.setOnClickListener {
-                viewModel.share()
-            }
-            view.setOnClickListener {
-                viewModel.view()
-            }
+        val adapter = PostAdapter {
+            viewModel.likedById(it.id)
+            viewModel.share(it.id)
         }
+
+        binding.container.adapter = adapter
+        viewModel.get().observe(this, adapter::submitList)
+
     }
 }

@@ -6,7 +6,7 @@ import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 data class Post (
-    val id: Int = 0,
+    val id: Long = 0,
     val author: String,
     val content: String,
     val published: String,
@@ -14,7 +14,8 @@ data class Post (
     var share: Int = 0,
     var view: Int = 0,
     val likedByMe: Boolean = false,
-    val shared: Boolean = false
+    val shared: Boolean = false,
+    val viewed: Boolean = false
 )
 
 abstract class Elements() {
