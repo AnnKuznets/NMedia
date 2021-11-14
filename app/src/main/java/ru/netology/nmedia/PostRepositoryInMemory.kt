@@ -29,24 +29,14 @@ class PostRepositoryInMemory : PostRepository {
 
     override fun share(id: Long) {
         data.value = data.value?.map {
-            if (id == it.id) {
                 it.copy(shared = !it.shared)
-            } else {
-                it
             }
         }
-    }
-
     override fun view(id: Long) {
         data.value = data.value?.map {
-            if (id == it.id) {
                 it.copy(viewed = !it.viewed)
-            } else {
-                it
             }
         }
-    }
-
     override fun get(): LiveData<List<Post>> = data
 
 }
