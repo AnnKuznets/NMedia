@@ -10,12 +10,10 @@ data class Post (
     val author: String,
     val content: String,
     val published: String,
-    val like: Int = 0,
+    var like: Int = 0,
     var share: Int = 0,
-    var view: Int = 0,
-    val likedByMe: Boolean = false,
+    var likedByMe: Boolean = false,
     val shared: Boolean = false,
-    val viewed: Boolean = false
 )
 
 abstract class Elements() {
@@ -57,8 +55,5 @@ class Share : Elements()
 class ShareService : Service<Share>() {
     val share = mutableListOf<Share>()
 }
-class View : Elements()
-class ViewService : Service<View>() {
-    val view = mutableListOf<View>()
-}
+
 

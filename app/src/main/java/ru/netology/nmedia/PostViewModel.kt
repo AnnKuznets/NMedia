@@ -15,9 +15,6 @@ class PostViewModel : ViewModel() {
         repository.share(id)
     }
 
-    fun view(id: Long){
-      repository.view(id)
-    }
 
     fun get(): LiveData<List<Post>> = repository.get()
 }

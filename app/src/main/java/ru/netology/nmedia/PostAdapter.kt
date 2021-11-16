@@ -38,7 +38,6 @@ class PostAdapter(
                 published.text = post.published
                 likesCount?.text = post.like.toString()
                 sharesCount?.text = post.share.toString()
-                viewCount?.text = post.view.toString()
 
                 likes?.setImageResource(
                     if (post.likedByMe) {
@@ -48,13 +47,20 @@ class PostAdapter(
                     }
                 )
                 likes.setOnClickListener {
+                    if (post.likedByMe) {
+                        post.like--
+                    } else {
+                        post.like++
+                    }
+                    likesCount?.text = post.like.toString()
                     onLikeListener(post)
                 }
+
                 shares.setOnClickListener {
+                    post.share++
+                    sharesCount?.text = post.share.toString()
                     onShareListener(post)
                 }
-
-                likesCount?.text = post.like.toString()
             }
         }
     }
