@@ -19,36 +19,22 @@ class PostRepositoryInMemory : PostRepository {
 
     override fun likedById(id: Long) {
         data.value = data.value?.map {
-            if (id == it.id) {
-                it.like++
-                it.copy(likedByMe = !it.likedByMe)
-            } else {
-                it
+            if (id != it.id) it else it.copy(
+                likedByMe = !it.likedByMe,
+                like = if (it.likedByMe) it.like - 1 else it.like + 1
+            )
             }
         }
-            data.value = data.value?.map {
-                if (id == it.id) {
-                    it.like--
-                    it.copy(likedByMe = it.likedByMe)
-                } else {
-                    it
-                }
-            }
-       }
+
 
     override fun share(id: Long) {
         data.value = data.value?.map {
-            if (id == it.id) {
-                it.shares++
-                it.copy(shared = !it.shared)
-            } else {
-                it
-            }
+            if (id != it.id) it else it.copy(
+                shared = !it.shared,
+                shares = it.shares + 1
+            )
         }
     }
 
-
-
     override fun get(): LiveData<List<Post>> = data
-
 }
