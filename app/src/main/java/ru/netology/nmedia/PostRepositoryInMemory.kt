@@ -114,5 +114,14 @@ class PostRepositoryInMemory : PostRepository {
         }
         data.value = posts
     }
-    override fun get(): LiveData<List<Post>> = data
+
+    override fun cancel(id: Long) {
+        if (id != 0L) {
+            data.value = posts
+            return
+        }
+        data.value = posts
+    }
+
+        override fun get(): LiveData<List<Post>> = data
 }

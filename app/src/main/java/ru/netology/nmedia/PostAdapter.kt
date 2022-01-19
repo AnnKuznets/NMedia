@@ -70,10 +70,6 @@ class PostAdapter(
                                     listener.edit(post)
                                     true
                                 }
-                                R.id.cancel -> {
-                                    listener.cancel(post)
-                                    true
-                                }
                                 else -> false
                             }
                         }

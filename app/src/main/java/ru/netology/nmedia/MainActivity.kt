@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                     viewModel.share(post.id)
                 }
                 override fun cancel(post: Post) {
-                    viewModel.cancel(post)
+                    viewModel.cancel(post.id)
                 }
             }
 
@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.container.adapter = adapter
         viewModel.get().observe(this, adapter::submitList)
+
 
         with(binding) {
             save.setOnClickListener {
@@ -60,7 +61,15 @@ class MainActivity : AppCompatActivity() {
             viewModel.edited.observe(this@MainActivity) {
                 if(it.id == 0L) {
                     return@observe
+                } else {
+                    cancel.setOnClickListener {
+                    }
+                    group.visibility = View.VISIBLE
+
                 }
+                viewModel.cancel(it.id)
+
+
                 content.requestFocus()
                 content.setText(it.content)
             }

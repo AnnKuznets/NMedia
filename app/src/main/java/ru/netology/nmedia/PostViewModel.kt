@@ -37,8 +37,8 @@ class PostViewModel : ViewModel() {
     fun edit(post: Post) {
         edited.value = post
     }
-    fun cancel(post: Post) {
-        edited.value = post
+    fun cancel (id: Long) {
+        repository.cancel(id)
     }
 
 
@@ -58,8 +58,6 @@ class PostViewModel : ViewModel() {
         }
         edited.value = empty
     }
-    fun cancelEdit(post: Post) {
-            edited.value = post
-        }
+
 }
 
