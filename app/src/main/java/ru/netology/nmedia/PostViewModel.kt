@@ -37,27 +37,28 @@ class PostViewModel : ViewModel() {
     fun edit(post: Post) {
         edited.value = post
     }
-    fun cancel (id: Long) {
-        repository.cancel(id)
-    }
 
-
-    fun get(): LiveData<List<Post>> = repository.get()
-
-    fun editContent(text: String) {
-        val formatted = text.trim()
-        if (edited.value?.content == formatted) {
-            return
-        }
-        edited.value = edited.value?.copy(content = formatted)
-}
-
-    fun save() {
-        edited.value?.let {
-            repository.save(it)
-        }
+    fun cancel() {
         edited.value = empty
     }
 
-}
+        fun get(): LiveData<List<Post>> = repository.get()
+
+        fun editContent(text: String) {
+            val formatted = text.trim()
+            if (edited.value?.content == formatted) {
+                return
+            }
+            edited.value = edited.value?.copy(content = formatted)
+        }
+
+        fun save() {
+            edited.value?.let {
+                repository.save(it)
+            }
+            edited.value = empty
+        }
+    }
+
+
 

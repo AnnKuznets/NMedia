@@ -13,8 +13,6 @@ interface PostActionListener{
     fun like(post: Post)
     fun remove(post: Post)
     fun share(post: Post)
-    fun cancel(post: Post)
-
 }
 
 class PostAdapter(
