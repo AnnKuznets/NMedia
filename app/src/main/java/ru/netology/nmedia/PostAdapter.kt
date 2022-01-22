@@ -42,16 +42,11 @@ class PostAdapter(
                 author.text = post.author
                 content.text = post.content
                 published.text = post.published
-                likesCount?.text = post.like.toString()
-                sharesCount?.text = post.shares.toString()
+                likes?.text = post.like.toString()
+                shares?.text = post.shares.toString()
+                likes.isChecked = post.likedByMe
+                shares.isChecked = post.shared
 
-                likes?.setImageResource(
-                    if (post.likedByMe) {
-                        R.drawable.ic_liked
-                    } else {
-                        R.drawable.ic_like
-                    }
-                )
                 likes.setOnClickListener {
                     listener.like(post)
                 }
