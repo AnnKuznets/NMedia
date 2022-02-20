@@ -1,10 +1,9 @@
 package ru.netology.nmedia
 
+import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.netology.nmedia.PostRepositoryInMemory
-import ru.netology.nmedia.PostRepository
 
 
 private val empty = Post(
@@ -15,7 +14,7 @@ private val empty = Post(
     0,
     0,
     false,
-    false
+    false,
 )
 
 class PostViewModel : ViewModel() {

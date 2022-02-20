@@ -10,7 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NMedia">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.NewPostActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.IntentHandlerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

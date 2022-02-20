@@ -1,11 +1,6 @@
 package ru.netology.nmedia
 
-import java.util.*
-import kotlin.math.abs
-import kotlin.math.roundToInt
-import kotlin.math.roundToLong
-
-data class Post (
+data class Post(
     val id: Long = 0,
     val author: String,
     val content: String,
