@@ -18,6 +18,7 @@
         android:paddingBottom="100dp"
        />
 
+
 <com.google.android.material.bottomappbar.BottomAppBar
 android:id="@+id/bottomAppBar"
 android:layout_width="match_parent"

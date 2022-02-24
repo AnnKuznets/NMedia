@@ -1,11 +1,13 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import ru.netology.nmedia.*
 import ru.netology.nmedia.databinding.ActivityMainBinding
 import ru.netology.nmedia.util.AndroidUtils
@@ -47,6 +49,10 @@ class MainActivity : AppCompatActivity() {
             binding.container.adapter = adapter
             viewModel.get().observe(this, adapter::submitList)
 
+            binding.video.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY"))
+            startActivity(intent)
+        }
 
     val newPostContract = registerForActivityResult(NewPostActivity.Contract()) { result ->
         result ?: return@registerForActivityResult
