@@ -55,12 +55,7 @@ class PostAdapter(
                 shares?.text = post.shares.toString()
                 likes.isChecked = post.likedByMe
                 shares.isChecked = post.shared
-                if (post.video != null) {
-                    video.setImageResource(R.drawable.video)
-                    video.isVisible
-                    } else {
-                        video.isGone
-                    }
+                video.isVisible = post.video != null
 
 
                 likes.setOnClickListener {
@@ -90,7 +85,7 @@ class PostAdapter(
                 }
 
                 video.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY"))
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video.toString()))
                     startActivity(it.context, intent, Bundle())
                 }
             }

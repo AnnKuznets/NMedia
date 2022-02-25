@@ -5,5 +5,5 @@
     <string name="blank_content_error" translatable="false">Content is blank</string>
     <string name="edit_post">Edit</string>
     <string name="chooser_share_post" translatable="false">Share post</string>
-    <string name="error_empty_content">Content can\'t be empty</string>
+    <string name="error_empty_content" translatable="false">Content can\'t be empty</string>
 </resources>
