@@ -1,8 +1,6 @@
 package ru.netology.nmedia
 
 
-import java.net.URL
-
 data class Post(
     val id: Long = 0,
     val author: String,
@@ -12,7 +10,7 @@ data class Post(
     var shares: Int = 0,
     var likedByMe: Boolean = false,
     val shared: Boolean = false,
-    val video: URL? = null
+    val video: String? = null
 )
 
 abstract class Elements() {

@@ -25,6 +25,4 @@
         android:layout_margin="@dimen/offset"
         />
 
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

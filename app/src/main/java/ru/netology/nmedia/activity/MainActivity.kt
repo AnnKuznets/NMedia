@@ -49,10 +49,6 @@ class MainActivity : AppCompatActivity() {
             binding.container.adapter = adapter
             viewModel.get().observe(this, adapter::submitList)
 
-            binding.video.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY"))
-            startActivity(intent)
-        }
 
     val newPostContract = registerForActivityResult(NewPostActivity.Contract()) { result ->
         result ?: return@registerForActivityResult
@@ -63,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         binding.add.setOnClickListener {
             newPostContract.launch("")
         }
-
+        
         viewModel.edited.observe(this) { post ->
             if (post.id == 0L) {
                 return@observe

@@ -85,7 +85,7 @@
         android:layout_marginTop="@dimen/offset"
         style="@style/likeButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/barrier2"
         />
 
 
@@ -97,7 +97,7 @@
         android:layout_marginTop="@dimen/offset"
         style="@style/shareButton"
         app:layout_constraintStart_toEndOf="@+id/likes"
-        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/barrier2"
          />
 
     <ImageView
@@ -106,10 +106,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/content"
         app:layout_constraintBottom_toTopOf="@id/likes"
-        android:autoLink="web"
-        android:linksClickable="true"
-        app:srcCompat="@drawable/video"
-        android:visibility="visible"
         />
 
     <ImageButton
@@ -119,7 +115,7 @@
         android:background="@android:color/transparent"
         android:layout_marginTop="@dimen/offset"
         app:layout_constraintEnd_toStartOf="@+id/viewCount"
-        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/barrier2"
         app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
 
     <TextView
@@ -128,7 +124,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintTop_toBottomOf="@+id/barrier2"
         tools:text="507" />
 
 

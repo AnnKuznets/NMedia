@@ -1,13 +1,21 @@
 package ru.netology.nmedia
 
 
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.databinding.CardPostBinding
+import java.security.AccessController.getContext
 
 interface PostActionListener{
     fun edit(post: Post)
@@ -47,6 +55,13 @@ class PostAdapter(
                 shares?.text = post.shares.toString()
                 likes.isChecked = post.likedByMe
                 shares.isChecked = post.shared
+                if (post.video != null) {
+                    video.setImageResource(R.drawable.video)
+                    video.isVisible
+                    } else {
+                        video.isGone
+                    }
+
 
                 likes.setOnClickListener {
                     listener.like(post)
@@ -72,6 +87,11 @@ class PostAdapter(
                 }
                 shares.setOnClickListener {
                     listener.share(post)
+                }
+
+                video.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=WhWc3b3KhnY"))
+                    startActivity(it.context, intent, Bundle())
                 }
             }
         }
