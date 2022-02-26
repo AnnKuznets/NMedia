@@ -1,5 +1,7 @@
 package ru.netology.nmedia
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,8 +18,10 @@ private val empty = Post(
     false,
 )
 
-class PostViewModel : ViewModel() {
-    private val repository: PostRepository = PostRepositoryInMemory()
+class PostViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository: PostRepository = PostRepositoryFileImpl(application)
+
     val edited = MutableLiveData(empty)
 
     fun likedById(id: Long) {
