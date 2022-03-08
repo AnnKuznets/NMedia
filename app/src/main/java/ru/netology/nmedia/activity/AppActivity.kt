@@ -3,15 +3,19 @@ package ru.netology.nmedia.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_INDEFINITE
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
-import ru.netology.nmedia.databinding.ActivityIntentHandlerBinding
+import ru.netology.nmedia.activity.NewPostFragment.Companion.longArg
+import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
+import ru.netology.nmedia.databinding.ActivityAppBinding
 
-class IntentHandlerActivity : AppCompatActivity() {
+class AppActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityIntentHandlerBinding.inflate(layoutInflater)
+        val binding = ActivityAppBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         intent?.let {
@@ -27,6 +31,12 @@ class IntentHandlerActivity : AppCompatActivity() {
                     .show()
                 return@let
             }
+
+            findNavController(R.id.navigation_fragment).navigate(R.id.action_feedFragment_to_newPostFragment,
+                Bundle().apply {textArg = text})
+
+            findNavController(R.id.navigation_fragment).navigate(R.id.action_feedFragment_to_wallFragment,
+               Bundle().apply {longArg})
         }
     }
 }

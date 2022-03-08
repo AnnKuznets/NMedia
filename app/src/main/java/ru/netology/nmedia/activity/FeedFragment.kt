@@ -1,24 +1,27 @@
 package ru.netology.nmedia.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.*
-import ru.netology.nmedia.databinding.ActivityMainBinding
-import ru.netology.nmedia.util.AndroidUtils
+import ru.netology.nmedia.databinding.FragmentFeedBinding
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+class FeedFragment : Fragment() {
 
-        val viewModel: PostViewModel by viewModels()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val binding = FragmentFeedBinding.inflate(layoutInflater)
+
+        val viewModel: PostViewModel by viewModels(::requireParentFragment)
 
         val adapter = PostAdapter(
             object : PostActionListener {
@@ -46,18 +49,18 @@ class MainActivity : AppCompatActivity() {
                 }
             })
 
-            binding.container.adapter = adapter
-            viewModel.get().observe(this, adapter::submitList)
+        binding.container.adapter = adapter
+        viewModel.get().observe(this, adapter::submitList)
 
 
-    val newPostContract = registerForActivityResult(NewPostActivity.Contract()) { result ->
-        result ?: return@registerForActivityResult
-        viewModel.editContent(result)
-        viewModel.save()
+        val newPostContract = registerForActivityResult(NewPostFragment.Contract()) { result ->
+            result ?: return@registerForActivityResult
+            viewModel.editContent(result)
+            viewModel.save()
         }
 
         binding.add.setOnClickListener {
-            newPostContract.launch("")
+            findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
         viewModel.edited.observe(this) { post ->
@@ -67,7 +70,10 @@ class MainActivity : AppCompatActivity() {
                 newPostContract.launch(post.content.toString())
             }
         }
+
+        return binding.root
     }
+
 }
 
 

@@ -9,13 +9,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.core.content.ContextCompat.startActivity
-import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import ru.netology.nmedia.activity.NewPostFragment.Companion.longArg
 import ru.netology.nmedia.databinding.CardPostBinding
-import java.security.AccessController.getContext
 
 interface PostActionListener{
     fun edit(post: Post)
@@ -87,6 +89,9 @@ class PostAdapter(
                 video.setOnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.video.toString()))
                     startActivity(it.context, intent, Bundle())
+                }
+                content.setOnClickListener {
+                    findNavController().navigate(R.id.action_feedFragment_to_wallFragment)
                 }
             }
         }
