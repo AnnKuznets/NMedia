@@ -14,6 +14,7 @@
             android:id="@+id/action_feedFragment_to_newPostFragment"
             app:destination="@id/newPostFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/newPostFragment"
         android:name="ru.netology.nmedia.activity.NewPostFragment"
@@ -24,9 +25,13 @@
         android:name="ru.netology.nmedia.activity.WallFragment"
         android:label="WallFragment"
         tools:layout="@layout/fragment_post">
+    </fragment>
 
-        <action
+    <action
             android:id="@+id/action_feedFragment_to_wallFragment"
             app:destination="@id/wallFragment" />
-    </fragment>
+
+    <action
+        android:id="@+id/action_wallFragment_to_newPostFragment"
+        app:destination="@id/newPostFragment" />
 </navigation>

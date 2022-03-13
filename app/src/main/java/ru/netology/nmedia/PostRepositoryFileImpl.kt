@@ -28,8 +28,6 @@ class PostRepositoryFileImpl (val context: Context): PostRepository {
             sync()
         }
     }
-
-
     override fun likedById(id: Long) {
         posts = posts.map {
             if (it.id != id) it else it.copy(

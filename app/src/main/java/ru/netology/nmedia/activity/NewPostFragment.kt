@@ -31,7 +31,6 @@ class NewPostFragment : Fragment() {
 
         val viewModel: PostViewModel by viewModels(::requireParentFragment)
 
-
         binding.content.requestFocus()
         binding.save.setOnClickListener {
             if (!binding.content.text.isNullOrBlank()) {

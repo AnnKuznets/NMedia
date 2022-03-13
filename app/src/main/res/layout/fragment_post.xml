@@ -5,6 +5,6 @@
 
     <include
         android:id="@+id/post_fragment"
-        layout="@layout/card_post"/>
+        layout="@layout/card_post" />
 
 </ScrollView>

@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import ru.netology.nmedia.*
+import ru.netology.nmedia.activity.NewPostFragment.Companion.longArg
+import ru.netology.nmedia.activity.NewPostFragment.Companion.textArg
 import ru.netology.nmedia.databinding.FragmentFeedBinding
+import ru.netology.nmedia.util.LongArg
+import ru.netology.nmedia.util.StringArg
 
 class FeedFragment : Fragment() {
 
@@ -47,33 +52,39 @@ class FeedFragment : Fragment() {
                         Intent.createChooser(intent, getString(R.string.chooser_share_post))
                     startActivity(shareIntent)
                 }
+
+                override fun fragment(post: Post) {
+                        findNavController().navigate(R.id.action_feedFragment_to_wallFragment,
+                            Bundle().apply { longArg = post.id})
+                    }
             })
 
         binding.container.adapter = adapter
         viewModel.get().observe(this, adapter::submitList)
 
 
-        val newPostContract = registerForActivityResult(NewPostFragment.Contract()) { result ->
-            result ?: return@registerForActivityResult
-            viewModel.editContent(result)
-            viewModel.save()
-        }
+//        val newPostContract = registerForActivityResult(NewPostFragment.Contract()) { result ->
+//            result ?: return@registerForActivityResult
+//            viewModel.editContent(result)
+//            viewModel.save()
+//        }
 
         binding.add.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
         }
 
-        viewModel.edited.observe(this) { post ->
+        viewModel.edited.observe(viewLifecycleOwner) { post ->
             if (post.id == 0L) {
                 return@observe
             } else {
-                newPostContract.launch(post.content.toString())
+                findNavController().navigate(R.id.action_feedFragment_to_newPostFragment,
+                    Bundle().apply {
+                        textArg = post.content
+                    })
             }
         }
-
         return binding.root
     }
-
 }
 
 

@@ -2,6 +2,7 @@ package ru.netology.nmedia
 
 
 
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,6 +25,8 @@ interface PostActionListener{
     fun like(post: Post)
     fun remove(post: Post)
     fun share(post: Post)
+    fun fragment(post: Post)
+
 }
 
 class PostAdapter(
@@ -91,7 +94,7 @@ class PostAdapter(
                     startActivity(it.context, intent, Bundle())
                 }
                 content.setOnClickListener {
-                    findNavController().navigate(R.id.action_feedFragment_to_wallFragment)
+                    listener.fragment(post)
                 }
             }
         }
