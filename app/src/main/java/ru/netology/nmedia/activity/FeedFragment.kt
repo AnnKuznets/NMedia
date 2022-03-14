@@ -60,14 +60,7 @@ class FeedFragment : Fragment() {
             })
 
         binding.container.adapter = adapter
-        viewModel.get().observe(this, adapter::submitList)
-
-
-//        val newPostContract = registerForActivityResult(NewPostFragment.Contract()) { result ->
-//            result ?: return@registerForActivityResult
-//            viewModel.editContent(result)
-//            viewModel.save()
-//        }
+        viewModel.get().observe(viewLifecycleOwner, adapter::submitList)
 
         binding.add.setOnClickListener {
             findNavController().navigate(R.id.action_feedFragment_to_newPostFragment)
@@ -81,6 +74,7 @@ class FeedFragment : Fragment() {
                     Bundle().apply {
                         textArg = post.content
                     })
+                viewModel.cancel()
             }
         }
         return binding.root
