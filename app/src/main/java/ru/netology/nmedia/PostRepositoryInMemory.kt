@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 
+import android.provider.Settings.System.getString
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import java.net.URL
@@ -102,7 +103,12 @@ class PostRepositoryInMemory : PostRepository {
 
     override fun save(post: Post) {
         if (post.id == 0L) {
-            posts = listOf(post.copy(id = posts.firstOrNull()?.id?.inc() ?: 0)) + posts
+            posts = listOf(post.copy
+                (id = posts.firstOrNull()?.id?.inc() ?: 0,
+                (R.string.author_me).toString(),
+                (R.string.published).toString()
+            )
+            ) + posts
             data.value = posts
             return
         }

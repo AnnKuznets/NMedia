@@ -41,9 +41,9 @@ class NewPostFragment : Fragment() {
             findNavController().navigateUp()
         }
         binding.cancel.setOnClickListener {
+            viewModel.cancel()
             findNavController().navigateUp()
         }
-
         return binding.root
     }
 

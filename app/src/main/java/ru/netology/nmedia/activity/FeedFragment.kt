@@ -74,7 +74,6 @@ class FeedFragment : Fragment() {
                     Bundle().apply {
                         textArg = post.content
                     })
-                viewModel.cancel()
             }
         }
         return binding.root

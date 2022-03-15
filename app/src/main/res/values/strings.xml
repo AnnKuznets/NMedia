@@ -6,4 +6,7 @@
     <string name="edit_post">Edit</string>
     <string name="chooser_share_post" translatable="false">Share post</string>
     <string name="error_empty_content" translatable="false">Content can\'t be empty</string>
+    <string name="author_me" translatable="false">Me</string>
+    <string name="published" translatable="false">now</string>
+
 </resources>
