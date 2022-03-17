@@ -6,8 +6,8 @@ import ru.netology.nmedia.dao.PostDao
 import ru.netology.nmedia.dao.impl.PostDaoImpl
 import ru.netology.nmedia.dao.impl.PostTable
 
-class AppDb private constructor(db: SQLiteDatabase) {
-    val postDao: PostDao = PostDaoImpl(db)
+class AppDb private constructor(context: Context, db: SQLiteDatabase) {
+    val postDao: PostDao = PostDaoImpl(db,context)
 
     companion object {
         @Volatile
@@ -15,7 +15,7 @@ class AppDb private constructor(db: SQLiteDatabase) {
 
         fun getInstance(context: Context): AppDb {
             return instance ?: synchronized(this) {
-                instance ?: AppDb(
+                instance ?: AppDb(context,
                     buildDatabase(context, arrayOf(PostTable.DDL))
                 ).also { instance = it }
             }

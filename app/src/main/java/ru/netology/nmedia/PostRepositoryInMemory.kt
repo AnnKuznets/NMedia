@@ -1,6 +1,7 @@
 package ru.netology.nmedia
 
 
+import android.content.Context
 import android.provider.Settings.System.getString
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -105,8 +106,8 @@ class PostRepositoryInMemory : PostRepository {
         if (post.id == 0L) {
             posts = listOf(post.copy
                 (id = posts.firstOrNull()?.id?.inc() ?: 0,
-                (R.string.author_me).toString(),
-                (R.string.published).toString()
+                author = (R.string.author_me).toString(),
+                published = (R.string.published).toString()
             )
             ) + posts
             data.value = posts

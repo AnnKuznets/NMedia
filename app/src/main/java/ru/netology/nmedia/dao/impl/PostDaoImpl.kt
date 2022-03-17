@@ -1,13 +1,14 @@
 package ru.netology.nmedia.dao.impl
 
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import ru.netology.nmedia.Post
 import ru.netology.nmedia.R
 import ru.netology.nmedia.dao.PostDao
 
-class PostDaoImpl(private val db: SQLiteDatabase): PostDao {
+class PostDaoImpl(private val db: SQLiteDatabase, override val context: Context): PostDao {
     override fun getAll() = db.query(
         PostTable.NAME,
         PostTable.ALL_COLUMNS,
@@ -25,9 +26,9 @@ class PostDaoImpl(private val db: SQLiteDatabase): PostDao {
 
     override fun save(post: Post): Post {
         val values = ContentValues().apply {
-            put(PostTable.Column.AUTHOR.columnName, (R.string.author_me))
+            put(PostTable.Column.AUTHOR.columnName, context.getString(R.string.author_me))
             put(PostTable.Column.CONTENT.columnName, post.content)
-            put(PostTable.Column.PUBLISHED.columnName, (R.string.published))
+            put(PostTable.Column.PUBLISHED.columnName, context.getString(R.string.published))
         }
         val id = if (post.id != 0L) {
             db.update(
@@ -44,7 +45,7 @@ class PostDaoImpl(private val db: SQLiteDatabase): PostDao {
             PostTable.NAME,
             PostTable.ALL_COLUMNS,
             "${PostTable.Column.ID.columnName} = ?",
-            arrayOf(post.id.toString()),
+            arrayOf(id.toString()),
             null,
             null,
             null,
