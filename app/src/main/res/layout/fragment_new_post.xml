@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <EditText
+        android:id="@+id/content"
+        android:autofillHints="no"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:padding="@dimen/offset"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="100dp"
+       />
+
+
+<com.google.android.material.bottomappbar.BottomAppBar
+android:id="@+id/bottomAppBar"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_gravity="bottom"
+style="@style/Widget.MaterialComponents.BottomAppBar.Colored" />
+
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+
+    android:id="@+id/save"
+    android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+app:srcCompat="@drawable/ic_add"
+app:layout_anchor="@id/bottomAppBar" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cancel"
+        app:layout_anchor="@id/bottomAppBar" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+

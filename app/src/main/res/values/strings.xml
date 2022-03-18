@@ -1,4 +1,12 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">NMedia</string>
     <string name="str_hello">NMedia!</string>
+    <string name="remove_post">Remove</string>
+    <string name="blank_content_error" translatable="false">Content is blank</string>
+    <string name="edit_post">Edit</string>
+    <string name="chooser_share_post" translatable="false">Share post</string>
+    <string name="error_empty_content" translatable="false">Content can\'t be empty</string>
+    <string name="author_me" translatable="false">Me</string>
+    <string name="published" translatable="false">now</string>
+
 </resources>
